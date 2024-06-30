@@ -340,7 +340,7 @@ void processadorEfeitos(struct jogador *playersTurn, char *playerAttack, struct 
         
       } else {
 
-        printf("Estamina insuficiente");
+        printf("Estamina insuficiente\n");
         
       }
       
@@ -353,7 +353,7 @@ void processadorEfeitos(struct jogador *playersTurn, char *playerAttack, struct 
 
       } else {
 
-        printf("Estamina insuficiente");
+        printf("Estamina insuficiente\n");
 
       }
       
@@ -366,7 +366,7 @@ void processadorEfeitos(struct jogador *playersTurn, char *playerAttack, struct 
 
       } else {
 
-        printf("Estamina insuficiente");
+        printf("Estamina insuficiente\n");
 
       }
       
@@ -379,7 +379,7 @@ void processadorEfeitos(struct jogador *playersTurn, char *playerAttack, struct 
 
       } else {
 
-        printf("Estamina insuficiente");
+        printf("Estamina insuficiente\n");
 
       }
 
@@ -399,7 +399,7 @@ void processadorEfeitos(struct jogador *playersTurn, char *playerAttack, struct 
 
         } else {
 
-          printf("Estamina insuficiente");
+          printf("Estamina insuficiente\n");
 
         }
 
@@ -412,7 +412,7 @@ void processadorEfeitos(struct jogador *playersTurn, char *playerAttack, struct 
 
         } else {
 
-          printf("Estamina insuficiente");
+          printf("Estamina insuficiente\n");
 
         }
 
@@ -425,7 +425,7 @@ void processadorEfeitos(struct jogador *playersTurn, char *playerAttack, struct 
 
         } else {
 
-          printf("Estamina insuficiente");
+          printf("Estamina insuficiente\n");
 
         }
 
@@ -438,7 +438,7 @@ void processadorEfeitos(struct jogador *playersTurn, char *playerAttack, struct 
 
         } else {
 
-          printf("Estamina insuficiente");
+          printf("Estamina insuficiente\n");
 
         }
 
@@ -512,7 +512,7 @@ void processadorEfeitos(struct jogador *playersTurn, char *playerAttack, struct 
 
       if (effect >= 0) {
 
-        playerAffected->vidaJogador -= effect;
+        playerAffected->vidaJogador -= effect * playersTurn->estaminaJogador;
         
       }
 
@@ -520,7 +520,7 @@ void processadorEfeitos(struct jogador *playersTurn, char *playerAttack, struct 
 
       if (effect <= 0) { 
 
-        playersTurn->vidaJogador += effect;
+        playersTurn->vidaJogador += effect * playerAffected->estaminaJogador;
         
       }
       
@@ -609,9 +609,11 @@ int cicloJogo(struct jogador *jogador1, char *ataqueJogador1, struct jogador *jo
 
   //--------------------------------------------------------------------
 
+  processadorEfeitos(&jogador1[0], &ataqueJogador1[0], &jogador2[0], &ataqueJogador2[0]);
+  
   estruturaAtaques(&ataqueJogador1[0], &ataqueJogador2[0]);
 
-  processadorEfeitos(&jogador1[0], &ataqueJogador1[0], &jogador2[0], &ataqueJogador2[0]);
+  
 
   return 0;
   
